@@ -4,7 +4,32 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userDao" class="cn.jyuyang.dao.UserDao"/>
+    <bean id="userDao" class="cn.jyuyang.dao.UserDao" init-method="init"/>
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService">-->
+        <!--<property name="userDao" ref="userDao"/>-->
+    <!--</bean>-->
+
+    <!--构造方法name类型-->
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService">-->
+        <!--<constructor-arg name="userDao" ref="userDao"/>-->
+    <!--</bean>-->
+
+    <!--index索引，从0开始-->
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService">-->
+        <!--<constructor-arg index="0" ref="userDao" />-->
+    <!--</bean>-->
+
+    <!--type类型，构造方法参数的类型-->
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService">-->
+        <!--<constructor-arg type="cn.jyuyang.dao.UserDao" ref="userDao"/>-->
+    <!--</bean>-->
+
+    <!--自动注入，byname，通过set方法，将方法名去掉set首字母小写，然后在spring容器中，找到对应bean管理-->
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService" autowire="byName"/>-->
+    <!--<bean id="userService" class="cn.jyuyang.service.UserService" autowire="byType"/>-->
+
+    <!--根据构造方法的参数，先根据byBane查找，如果没查到再根据byType注入依赖-->
+    <bean id="userService" class="cn.jyuyang.service.UserService" autowire="constructor"/>
 
 
 </beans>
